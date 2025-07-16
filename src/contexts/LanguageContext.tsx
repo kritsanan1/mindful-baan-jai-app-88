@@ -17,6 +17,7 @@ const translations = {
     'nav.home': 'หน้าหลัก',
     'nav.chat': 'แชท AI',
     'nav.content': 'เนื้อหา',
+    'nav.health': 'สุขภาพ',
     'nav.therapist': 'นักจิตวิทยา',
     'nav.profile': 'โปรไฟล์',
     
@@ -59,6 +60,7 @@ const translations = {
     'nav.home': 'Home',
     'nav.chat': 'AI Chat',
     'nav.content': 'Content',
+    'nav.health': 'Health',
     'nav.therapist': 'Therapist',
     'nav.profile': 'Profile',
     

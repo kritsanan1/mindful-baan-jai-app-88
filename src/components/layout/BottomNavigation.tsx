@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Home, MessageCircle, Book, User, Calendar } from 'lucide-react';
+import { Home, MessageCircle, Book, User, Calendar, Heart } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export const BottomNavigation: React.FC = () => {
@@ -29,10 +29,10 @@ export const BottomNavigation: React.FC = () => {
       activeColor: 'text-warm-orange'
     },
     {
-      path: '/therapist',
-      icon: Calendar,
-      label: t('nav.therapist'),
-      activeColor: 'text-purple-600'
+      path: '/health',
+      icon: Heart,
+      label: 'Health',
+      activeColor: 'text-red-500'
     },
     {
       path: '/profile',
