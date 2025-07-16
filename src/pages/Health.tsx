@@ -2,6 +2,9 @@ import React from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { SmartWatchConnection } from '@/components/health/SmartWatchConnection';
 import { HealthMetricsCard } from '@/components/health/HealthMetricsCard';
+import { HealthAnalytics } from '@/components/health/HealthAnalytics';
+import { MeditationWithBiometrics } from '@/components/meditation/MeditationWithBiometrics';
+import { SmartNotifications } from '@/components/health/SmartNotifications';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Activity, Heart, TrendingUp } from 'lucide-react';
 
@@ -27,8 +30,22 @@ const Health = () => {
         {/* Smart Watch Connection */}
         <SmartWatchConnection />
 
+        {/* Meditation with Biometrics */}
+        <MeditationWithBiometrics 
+          duration={5}
+          onComplete={(sessionData) => {
+            console.log('Meditation session completed:', sessionData);
+          }}
+        />
+
         {/* Health Metrics */}
         <HealthMetricsCard />
+
+        {/* Health Analytics */}
+        <HealthAnalytics />
+
+        {/* Smart Notifications */}
+        <SmartNotifications />
 
         {/* Today's Overview */}
         <Card className="bg-card border-border">
