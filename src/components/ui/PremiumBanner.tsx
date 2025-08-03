@@ -1,8 +1,8 @@
 
 import React from 'react';
 import { Card } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { PremiumUpgrade } from '@/components/premium/PremiumUpgrade';
 
 interface PremiumBannerProps {
   onUpgrade: () => void;
@@ -25,15 +25,7 @@ export const PremiumBanner: React.FC<PremiumBannerProps> = ({ onUpgrade }) => {
             </p>
           </div>
         </div>
-        <Button
-          onClick={onUpgrade}
-          size="sm"
-          className="bg-white text-warm-orange hover:bg-gray-100 rounded-full transition-all duration-200 hover:scale-105"
-        >
-          <span className={language === 'th' ? 'thai-text' : ''}>
-            {t('common.upgrade')}
-          </span>
-        </Button>
+        <PremiumUpgrade showAsModal={true} />
       </div>
     </Card>
   );

@@ -6,6 +6,8 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Settings, Trophy, Star, Calendar, Bell, Lock, Crown, LogOut } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
+import { BillingPortal } from '@/components/premium/BillingPortal';
+import { PremiumUpgrade } from '@/components/premium/PremiumUpgrade';
 
 const Profile = () => {
   const { t, language, setLanguage } = useLanguage();
@@ -154,30 +156,22 @@ const Profile = () => {
       {/* Premium Upgrade */}
       {!userData.isPremium && (
         <div className="px-6 pb-4">
-          <Card className="p-4 bg-gradient-to-r from-warm-orange to-yellow-400 text-white shadow-lg">
-            <div className="flex items-center justify-between">
-              <div>
-                <h3 className={`font-semibold mb-1 ${language === 'th' ? 'thai-text' : ''}`}>
-                  {language === 'th' ? 'อัปเกรดเป็นพรีเมี่ยม' : 'Upgrade to Premium'}
-                </h3>
-                <p className={`text-sm opacity-90 ${language === 'th' ? 'thai-text' : ''}`}>
-                  {language === 'th' 
-                    ? 'ปลดล็อกเนื้อหาและฟีเจอร์พิเศษ' 
-                    : 'Unlock exclusive content & features'
-                  }
-                </p>
-              </div>
-              <Button
-                onClick={handleUpgradeToPremium}
-                className="bg-white text-warm-orange hover:bg-gray-100"
-              >
-                <Crown className="w-4 h-4 mr-1" />
-                <span className={language === 'th' ? 'thai-text' : ''}>
-                  {language === 'th' ? 'อัปเกรด' : 'Upgrade'}
-                </span>
-              </Button>
-            </div>
-          </Card>
+          <PremiumUpgrade showAsModal={true} />
+        </div>
+      )}
+
+      {/* Billing Portal for Premium Users */}
+      {userData.isPremium && (
+        <div className="px-6 pb-4">
+          <BillingPortal 
+            isPremium={userData.isPremium}
+            subscription={{
+              status: 'active',
+              currentPeriodEnd: '2024-02-15',
+              priceId: 'price_premium_monthly',
+              cancelAtPeriodEnd: false
+            }}
+          />
         </div>
       )}
 
