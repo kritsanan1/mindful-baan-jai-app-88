@@ -9,6 +9,7 @@ import { DailyTipCard } from '@/components/ui/DailyTipCard';
 import { PremiumBanner } from '@/components/ui/PremiumBanner';
 import { Button } from '@/components/ui/button';
 import { FullScreenLoading } from '@/components/ui/loading';
+import { AppLogo } from '@/components/ui/optimized-image';
 import { LogIn, UserPlus } from 'lucide-react';
 
 const Index = () => {
@@ -143,11 +144,7 @@ const Index = () => {
           <div className="space-y-6">
             <div className="text-center py-8">
               <div className="w-24 h-24 bg-mint-green rounded-full flex items-center justify-center mx-auto mb-6">
-                <img 
-                  src="/lovable-uploads/b0906d9f-4936-4c2d-81db-6cffd5004f5d.png" 
-                  alt="Baan Jai Logo" 
-                  className="w-12 h-12"
-                />
+                <AppLogo size="lg" />
               </div>
               <h2 className={`text-2xl font-bold text-gray-800 mb-4 ${language === 'th' ? 'thai-text' : ''}`}>
                 {language === 'th' ? 'ดูแลจิตใจ ด้วยใจ' : 'Caring for your mind, with heart'}
@@ -255,11 +252,7 @@ const Index = () => {
         {/* App Logo/Branding */}
         <div className="text-center py-8">
           <div className="inline-flex items-center space-x-2 opacity-75">
-            <img 
-              src="/lovable-uploads/b0906d9f-4936-4c2d-81db-6cffd5004f5d.png" 
-              alt="Baan Jai Logo" 
-              className="w-8 h-8"
-            />
+            <AppLogo size="md" />
             <span className={`text-lg font-semibold text-gray-600 ${language === 'th' ? 'thai-text' : ''}`}>
               บ้านใจ • Baan Jai
             </span>
