@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Play, Clock, Star, Lock } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
+import { ContentDetail } from '@/components/content/ContentDetail';
 
 interface ContentItem {
   id: string;
@@ -100,14 +101,28 @@ const Content = () => {
     return categoryMatch && durationMatch;
   });
 
+  const [selectedContent, setSelectedContent] = useState<ContentItem | null>(null);
+
   const handlePlayContent = (item: ContentItem) => {
     if (item.isPremium) {
       // Show premium upgrade prompt
       return;
     }
-    // Navigate to content player
-    console.log('Playing:', item.title);
+    setSelectedContent(item);
   };
+
+  const handleBackToContent = () => {
+    setSelectedContent(null);
+  };
+
+  if (selectedContent) {
+    return (
+      <ContentDetail 
+        contentId={selectedContent.id} 
+        onBack={handleBackToContent}
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen bg-soft-blue pb-20">

@@ -33,8 +33,14 @@ export const BottomNavigation: React.FC = () => {
     {
       path: '/health',
       icon: Heart,
-      label: 'Health',
+      label: t('nav.health'),
       activeColor: 'text-red-500'
+    },
+    {
+      path: '/schedule',
+      icon: Calendar,
+      label: t('nav.schedule'),
+      activeColor: 'text-purple-500'
     },
     {
       path: '/profile',

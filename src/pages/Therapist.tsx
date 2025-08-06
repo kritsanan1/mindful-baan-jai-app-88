@@ -6,6 +6,8 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Star, MapPin, Clock, Phone, Crown } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { BookingCalendar } from '@/components/booking/BookingCalendar';
+import { toast } from 'sonner';
 
 interface Therapist {
   id: string;
@@ -31,6 +33,7 @@ const Therapist = () => {
   const [selectedSpecialty, setSelectedSpecialty] = useState<string>('all');
   const [selectedPriceRange, setPriceRange] = useState<string>('all');
   const [selectedTherapist, setSelectedTherapist] = useState<Therapist | null>(null);
+  const [showBookingCalendar, setShowBookingCalendar] = useState(false);
 
   const therapists: Therapist[] = [
     {
@@ -121,9 +124,38 @@ const Therapist = () => {
       // Show premium upgrade prompt
       return;
     }
-    // Navigate to booking calendar
-    console.log('Booking with:', therapist.name);
+    setSelectedTherapist(therapist);
+    setShowBookingCalendar(true);
   };
+
+  const handleBookingConfirm = (date: Date, timeSlot: any) => {
+    toast.success(
+      language === 'th' 
+        ? 'จองนัดพบเรียบร้อยแล้ว!' 
+        : 'Appointment booked successfully!'
+    );
+    setShowBookingCalendar(false);
+    setSelectedTherapist(null);
+  };
+
+  const handleBookingCancel = () => {
+    setShowBookingCalendar(false);
+    setSelectedTherapist(null);
+  };
+
+  if (showBookingCalendar && selectedTherapist) {
+    return (
+      <div className="min-h-screen bg-soft-blue pb-20">
+        <div className="px-6 py-4">
+          <BookingCalendar
+            therapist={selectedTherapist}
+            onBookingConfirm={handleBookingConfirm}
+            onCancel={handleBookingCancel}
+          />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-soft-blue pb-20">

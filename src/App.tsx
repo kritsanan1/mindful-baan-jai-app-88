@@ -20,6 +20,7 @@ const Content = React.lazy(() => import("./pages/Content"));
 const Therapist = React.lazy(() => import("./pages/Therapist"));
 const Profile = React.lazy(() => import("./pages/Profile"));
 const Health = React.lazy(() => import("./pages/Health"));
+const Schedule = React.lazy(() => import("./pages/Schedule"));
 
 const queryClient = new QueryClient();
 
@@ -54,6 +55,11 @@ const App = () => (
                   <Route path="/health" element={
                     <React.Suspense fallback={<FullScreenLoading />}>
                       <Health />
+                    </React.Suspense>
+                  } />
+                  <Route path="/schedule" element={
+                    <React.Suspense fallback={<FullScreenLoading />}>
+                      <Schedule />
                     </React.Suspense>
                   } />
                   <Route path="/profile" element={

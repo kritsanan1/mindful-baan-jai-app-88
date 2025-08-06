@@ -18,6 +18,7 @@ const translations = {
     'nav.content': 'เนื้อหา',
     'nav.health': 'สุขภาพ',
     'nav.therapist': 'นักจิตวิทยา',
+    'nav.schedule': 'ตารางนัด',
     'nav.profile': 'โปรไฟล์',
     
     // Home screen
@@ -61,6 +62,7 @@ const translations = {
     'nav.content': 'Content',
     'nav.health': 'Health',
     'nav.therapist': 'Therapist',
+    'nav.schedule': 'Schedule',
     'nav.profile': 'Profile',
     
     // Home screen
