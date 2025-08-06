@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -10,6 +9,8 @@ import { AuthProvider } from "./contexts/AuthContext";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import { MobileLayout } from "./components/layout/MobileLayout";
+import { ErrorBoundary } from "./components/ui/error-boundary";
+import { FullScreenLoading } from "./components/ui/loading";
 import React from "react";
 
 // Lazy load the main pages
@@ -22,51 +23,53 @@ const Health = React.lazy(() => import("./pages/Health"));
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <LanguageProvider>
-      <AuthProvider>
-        <SmartWatchProvider>
-          <TooltipProvider>
-            <Toaster />
-            <Sonner />
-            <BrowserRouter>
-              <MobileLayout>
+  <ErrorBoundary>
+    <QueryClientProvider client={queryClient}>
+      <LanguageProvider>
+        <AuthProvider>
+          <SmartWatchProvider>
+            <TooltipProvider>
+              <Toaster />
+              <Sonner />
+              <BrowserRouter>
+                <MobileLayout>
                 <Routes>
                   <Route path="/" element={<Index />} />
                   <Route path="/chat" element={
-                    <React.Suspense fallback={<div className="flex items-center justify-center h-screen">Loading...</div>}>
+                    <React.Suspense fallback={<FullScreenLoading />}>
                       <Chat />
                     </React.Suspense>
                   } />
                   <Route path="/content" element={
-                    <React.Suspense fallback={<div className="flex items-center justify-center h-screen">Loading...</div>}>
+                    <React.Suspense fallback={<FullScreenLoading />}>
                       <Content />
                     </React.Suspense>
                   } />
                   <Route path="/therapist" element={
-                    <React.Suspense fallback={<div className="flex items-center justify-center h-screen">Loading...</div>}>
+                    <React.Suspense fallback={<FullScreenLoading />}>
                       <Therapist />
                     </React.Suspense>
                   } />
                   <Route path="/health" element={
-                    <React.Suspense fallback={<div className="flex items-center justify-center h-screen">Loading...</div>}>
+                    <React.Suspense fallback={<FullScreenLoading />}>
                       <Health />
                     </React.Suspense>
                   } />
                   <Route path="/profile" element={
-                    <React.Suspense fallback={<div className="flex items-center justify-center h-screen">Loading...</div>}>
+                    <React.Suspense fallback={<FullScreenLoading />}>
                       <Profile />
                     </React.Suspense>
                   } />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
-              </MobileLayout>
-            </BrowserRouter>
-          </TooltipProvider>
-        </SmartWatchProvider>
-      </AuthProvider>
-    </LanguageProvider>
-  </QueryClientProvider>
+                </MobileLayout>
+              </BrowserRouter>
+            </TooltipProvider>
+          </SmartWatchProvider>
+        </AuthProvider>
+      </LanguageProvider>
+    </QueryClientProvider>
+  </ErrorBoundary>
 );
 
 export default App;
