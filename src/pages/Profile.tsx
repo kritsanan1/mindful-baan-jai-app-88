@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -11,13 +12,14 @@ import { PremiumUpgrade } from '@/components/premium/PremiumUpgrade';
 
 const Profile = () => {
   const { t, language, setLanguage } = useLanguage();
+  const { user, signOut } = useAuth();
   const [notifications, setNotifications] = useState(true);
   const [privacyMode, setPrivacyMode] = useState(false);
 
   // Mock user data
   const userData = {
-    name: language === 'th' ? 'สมชาย ใจดี' : 'Somchai Jaidee',
-    email: 'somchai@example.com',
+    name: user?.user_metadata?.full_name || (language === 'th' ? 'ผู้ใช้' : 'User'),
+    email: user?.email || '',
     joinDate: new Date('2024-01-15'),
     isPremium: false,
     meditationStreak: 7,
@@ -60,8 +62,8 @@ const Profile = () => {
     console.log('Navigate to premium upgrade');
   };
 
-  const handleLogout = () => {
-    console.log('User logout');
+  const handleLogout = async () => {
+    await signOut();
   };
 
   const progressPercentage = (userData.points / userData.nextLevelPoints) * 100;
