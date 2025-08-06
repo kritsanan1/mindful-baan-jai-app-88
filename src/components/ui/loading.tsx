@@ -27,11 +27,8 @@ export const Loading: React.FC<LoadingProps> = ({
     <div className="flex flex-col items-center justify-center space-y-4">
       {showLogo && (
         <div className={`${sizes[size]} bg-mint-green rounded-full flex items-center justify-center animate-pulse-gentle`}>
-          <img 
-            src="/lovable-uploads/b0906d9f-4936-4c2d-81db-6cffd5004f5d.png" 
-            alt="Baan Jai Logo" 
-            className="w-1/2 h-1/2"
-            loading="eager"
+          <AppLogo
+            size={size === 'lg' ? 'lg' : size === 'md' ? 'md' : 'sm'}
           />
         </div>
       )}
