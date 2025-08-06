@@ -8,6 +8,7 @@ import { MeditationCard } from '@/components/ui/MeditationCard';
 import { DailyTipCard } from '@/components/ui/DailyTipCard';
 import { PremiumBanner } from '@/components/ui/PremiumBanner';
 import { Button } from '@/components/ui/button';
+import { FullScreenLoading } from '@/components/ui/loading';
 import { LogIn, UserPlus } from 'lucide-react';
 
 const Index = () => {
@@ -67,7 +68,7 @@ const Index = () => {
                   month: 'long'
                 })
               ) : (
-                language === 'th' ? 'แ���ปดูแลสุขภาพจิตด้วย AI' : 'AI-powered mental health companion'
+                language === 'th' ? 'แอปดูแลสุขภาพจิตด้วย AI' : 'AI-powered mental health companion'
               )}
             </p>
           </div>
@@ -190,7 +191,7 @@ const Index = () => {
                   {language === 'th' ? 'AI แชทบอท' : 'AI Chatbot'}
                 </h3>
                 <p className={`text-xs text-gray-600 ${language === 'th' ? 'thai-text' : ''}`}>
-                  {language === 'th' ? 'พูดคุยกั��� AI ที่เข้าใจคุณ' : 'Chat with AI that understands you'}
+                  {language === 'th' ? 'พูดคุยกับ AI ที่เข้าใจคุณ' : 'Chat with AI that understands you'}
                 </p>
               </div>
               
