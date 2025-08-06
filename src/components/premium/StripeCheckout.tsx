@@ -82,7 +82,7 @@ export const StripeCheckout: React.FC<StripeCheckoutProps> = ({ onClose }) => {
                 <div className="text-3xl font-bold text-dark-green">
                   {formatPrice(product.price)}
                 </div>
-                {product.originalPrice && (
+                {'originalPrice' in product && (
                   <div className="text-sm text-gray-500 line-through">
                     {formatPrice(product.originalPrice)}
                   </div>

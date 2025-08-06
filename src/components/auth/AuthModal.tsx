@@ -209,6 +209,16 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess
                     )}
                   </Button>
                 </form>
+
+                {/* Demo Account Section */}
+                <div className="mt-6 pt-4 border-t">
+                  <div className="text-center mb-4">
+                    <p className={`text-sm text-muted-foreground ${language === 'th' ? 'thai-text' : ''}`}>
+                      {language === 'th' ? 'หรือทดลองใช้งาน' : 'Or try the demo'}
+                    </p>
+                  </div>
+                  {/* DemoAccount component would go here if we had imported it */}
+                </div>
               </CardContent>
             </Card>
           </TabsContent>

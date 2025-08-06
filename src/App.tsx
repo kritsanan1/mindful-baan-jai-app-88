@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound";
 import { MobileLayout } from "./components/layout/MobileLayout";
 import { ErrorBoundary } from "./components/ui/error-boundary";
 import { FullScreenLoading } from "./components/ui/loading";
+import { DebugPanel } from "./components/debug/DebugPanel";
 import React from "react";
 
 // Lazy load the main pages
@@ -62,6 +63,7 @@ const App = () => (
                   } />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
+                <DebugPanel />
                 </MobileLayout>
               </BrowserRouter>
             </TooltipProvider>
