@@ -1,5 +1,4 @@
-
-import React, { useState } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useAuth } from '@/contexts/AuthContext';
@@ -18,31 +17,34 @@ const Index = () => {
   const [meditationStreak] = useState(7);
   const [showAuthModal, setShowAuthModal] = useState(false);
 
-  const userName = user?.user_metadata?.full_name || (language === 'th' ? 'ผู้ใช้' : 'User');
+  const userName = useMemo(() =>
+    user?.user_metadata?.full_name || (language === 'th' ? 'ผู้ใช้' : 'User'),
+    [user?.user_metadata?.full_name, language]
+  );
 
-  const handleMoodCheck = () => {
+  const handleMoodCheck = useCallback(() => {
     if (!user) {
       setShowAuthModal(true);
       return;
     }
     navigate('/chat');
-  };
+  }, [user, navigate]);
 
-  const handleStartMeditation = () => {
+  const handleStartMeditation = useCallback(() => {
     if (!user) {
       setShowAuthModal(true);
       return;
     }
     navigate('/content');
-  };
+  }, [user, navigate]);
 
-  const handleUpgrade = () => {
+  const handleUpgrade = useCallback(() => {
     if (!user) {
       setShowAuthModal(true);
       return;
     }
     console.log('Navigate to premium upgrade');
-  };
+  }, [user]);
 
   if (isLoading) {
     return (
@@ -166,7 +168,7 @@ const Index = () => {
               </h2>
               <p className={`text-gray-600 mb-8 max-w-sm mx-auto ${language === 'th' ? 'thai-text' : ''}`}>
                 {language === 'th' 
-                  ? 'แอปพลิเคชันดูแลสุขภาพจิตด้วยปัญญาประดิษฐ์ สำหรับคนไทยวัยรุ่น'
+                  ? 'แอปพลิเคชันดูแลสุขภาพจิตด้วยปัญญาประดิษฐ์ สำหรับคนไทยวัยร���่น'
                   : 'AI-powered mental health companion designed for Thai young adults'
                 }
               </p>
