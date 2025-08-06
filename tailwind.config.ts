@@ -1,13 +1,31 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
 	darkMode: ["class"],
 	content: [
-		"./pages/**/*.{ts,tsx}",
-		"./components/**/*.{ts,tsx}",
-		"./app/**/*.{ts,tsx}",
-		"./src/**/*.{ts,tsx}",
+		"./index.html",
+		"./src/**/*.{js,ts,jsx,tsx}",
+		"./src/components/**/*.{js,ts,jsx,tsx}",
+		"./src/pages/**/*.{js,ts,jsx,tsx}",
+	],
+	safelist: [
+		// Dynamic classes that might be purged
+		'animate-pulse-gentle',
+		'animate-fade-in',
+		'animate-scale-in',
+		'thai-text',
+		'app-gradient',
+		'bg-soft-blue',
+		'bg-mint-green',
+		'bg-dark-green',
+		'text-calming-blue',
+		'text-warm-orange',
+		// Responsive classes
+		'sm:',
+		'md:',
+		'lg:',
+		'xl:',
+		'2xl:',
 	],
 	prefix: "",
 	theme: {

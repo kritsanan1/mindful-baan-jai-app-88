@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
@@ -67,11 +67,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return () => subscription.unsubscribe();
   }, []);
 
-  const signOut = async () => {
+  const signOut = useCallback(async () => {
     try {
       const { error } = await supabase.auth.signOut();
       if (error) throw error;
-      
+
       toast({
         title: 'Signed out successfully',
         description: 'See you next time!',
@@ -83,24 +83,24 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         variant: 'destructive',
       });
     }
-  };
+  }, [toast]);
 
-  const refreshUser = async () => {
+  const refreshUser = useCallback(async () => {
     const { data: { user }, error } = await supabase.auth.getUser();
     if (error) {
       console.error('Error refreshing user:', error);
     } else {
       setUser(user);
     }
-  };
+  }, []);
 
-  const value = {
+  const value = useMemo(() => ({
     user,
     session,
     isLoading,
     signOut,
     refreshUser,
-  };
+  }), [user, session, isLoading, signOut, refreshUser]);
 
   return (
     <AuthContext.Provider value={value}>

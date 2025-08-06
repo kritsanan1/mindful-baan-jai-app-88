@@ -1,5 +1,4 @@
-
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 
 type Language = 'th' | 'en';
 
@@ -110,17 +109,23 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     }
   }, []);
 
-  const changeLanguage = (lang: Language) => {
+  const changeLanguage = useCallback((lang: Language) => {
     setLanguage(lang);
     localStorage.setItem('baanjai-language', lang);
-  };
+  }, []);
 
-  const t = (key: string): string => {
+  const t = useCallback((key: string): string => {
     return translations[language][key] || key;
-  };
+  }, [language]);
+
+  const value = useMemo(() => ({
+    language,
+    setLanguage: changeLanguage,
+    t
+  }), [language, changeLanguage, t]);
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage: changeLanguage, t }}>
+    <LanguageContext.Provider value={value}>
       {children}
     </LanguageContext.Provider>
   );
