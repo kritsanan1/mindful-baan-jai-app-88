@@ -47,22 +47,7 @@ const Index = () => {
   }, [user]);
 
   if (isLoading) {
-    return (
-      <div className="min-h-screen app-gradient flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-16 h-16 bg-mint-green rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
-            <img 
-              src="/lovable-uploads/b0906d9f-4936-4c2d-81db-6cffd5004f5d.png" 
-              alt="Baan Jai Logo" 
-              className="w-8 h-8"
-            />
-          </div>
-          <p className={`text-gray-600 ${language === 'th' ? 'thai-text' : ''}`}>
-            {language === 'th' ? 'กำลังโหลด...' : 'Loading...'}
-          </p>
-        </div>
-      </div>
-    );
+    return <FullScreenLoading />;
   }
 
   return (
@@ -82,7 +67,7 @@ const Index = () => {
                   month: 'long'
                 })
               ) : (
-                language === 'th' ? 'แอปดูแลสุขภาพจิตด้วย AI' : 'AI-powered mental health companion'
+                language === 'th' ? 'แ���ปดูแลสุขภาพจิตด้วย AI' : 'AI-powered mental health companion'
               )}
             </p>
           </div>
@@ -168,7 +153,7 @@ const Index = () => {
               </h2>
               <p className={`text-gray-600 mb-8 max-w-sm mx-auto ${language === 'th' ? 'thai-text' : ''}`}>
                 {language === 'th' 
-                  ? 'แอปพลิเคชันดูแลสุขภาพจิตด้วยปัญญาประดิษฐ์ สำหรับคนไทยวัยร���่น'
+                  ? 'แอปพลิเคชันดูแลสุขภาพจิตด้วยปัญญาประดิษฐ์ สำหรับคนไทยวัยรุ่น'
                   : 'AI-powered mental health companion designed for Thai young adults'
                 }
               </p>
@@ -205,7 +190,7 @@ const Index = () => {
                   {language === 'th' ? 'AI แชทบอท' : 'AI Chatbot'}
                 </h3>
                 <p className={`text-xs text-gray-600 ${language === 'th' ? 'thai-text' : ''}`}>
-                  {language === 'th' ? 'พูดคุยกับ AI ที่เข้าใจคุณ' : 'Chat with AI that understands you'}
+                  {language === 'th' ? 'พูดคุยกั��� AI ที่เข้าใจคุณ' : 'Chat with AI that understands you'}
                 </p>
               </div>
               
