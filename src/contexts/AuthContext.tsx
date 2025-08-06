@@ -85,14 +85,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   }, [toast]);
 
-  const refreshUser = async () => {
+  const refreshUser = useCallback(async () => {
     const { data: { user }, error } = await supabase.auth.getUser();
     if (error) {
       console.error('Error refreshing user:', error);
     } else {
       setUser(user);
     }
-  };
+  }, []);
 
   const value = {
     user,
